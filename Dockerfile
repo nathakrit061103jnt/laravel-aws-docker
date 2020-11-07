@@ -1,7 +1,7 @@
-FROM php:7.4-fpm
-# FROM php:7.2-fpm
+FROM php:7.3-fpm
+
 # Copy composer.lock and composer.json
-COPY composer.* /var/www/
+COPY composer.lock composer.json /var/www/
 
 # Set working directory
 WORKDIR /var/www
@@ -9,6 +9,7 @@ WORKDIR /var/www
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
+    mysql-client \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
@@ -18,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
+    nano \
     curl
 
 # Clear cache
